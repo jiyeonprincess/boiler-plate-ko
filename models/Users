@@ -1,0 +1,38 @@
+const mongoose = require('mongoose');
+
+const userSchema = mongoose.Schema({
+    name: {
+        type : String,
+        maxlength: 50
+    },
+    email: {
+        type: String,
+        trim: true, //공백삭제
+        unique: 1 //중복안됨
+    },
+    password: {
+        type : String,
+        maxlength: 5
+    },
+    lastname: {
+        type : String,
+        maxlength: 50
+    },
+    role : {
+        type: Number,
+        default: 0
+    },
+    image: String,
+    token: {
+        type: String
+    },
+    tokenExp: {
+        type: Number
+    }
+})
+
+// 스키마를 모델로 감싸는 코드
+const User = mongoose.model('User', userSchema)
+
+//다른 곳애서도 사용할 수 있도록 하는 코드
+module.exports = {User}
